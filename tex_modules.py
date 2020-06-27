@@ -1,10 +1,15 @@
 import sys
 import os
 import re
-
+# from send2trash import send2trash
 
 def trash(path):
+    # using os.remove is really really risky since it permanently
+    # deletes. use send2trash.
+    # can't currently use send2trash on my own machine since
+    # there are version issues with the big sur beta
     os.remove(path)
+    # send2trash(path)
 
 
 def makePath(root, file):
@@ -94,6 +99,8 @@ def processFind(path=workingPath):
         return name, 'lmao kill yourself', False
 
 
+# behavior can be extremely squirrely if there .files for any
+# reason in the same folder as the subfiles
 def cleanup(path):
     os.chdir(path)
     for root, dirs, files in os.walk(path):
