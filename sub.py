@@ -1,6 +1,6 @@
-import tex_modules as tm
-import sys
 import os
+import sys
+import tex_modules as tm
 
 name, cwd, validEntry = tm.processFind()
 print(cwd)

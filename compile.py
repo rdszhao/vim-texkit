@@ -1,4 +1,5 @@
-from tex_modules import *
+from tex_modules import processFind, untex
+import os
 
 name, cwd, validEntry = processFind()
 print(cwd)

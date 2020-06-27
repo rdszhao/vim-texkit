@@ -1,11 +1,12 @@
-from tex_modules import *
+import tex_modules as tm
+import os
 
-name, cwd, validEntry = processFind()
+name, cwd, validEntry = tm.processFind()
 
 if not validEntry:
     print(cwd)
 
 else:
     secdir = cwd + '/sections'
-    cleanup(secdir)
-    texMod(name, cwd)
+    tm.cleanup(secdir)
+    tm.texMod(name, cwd)

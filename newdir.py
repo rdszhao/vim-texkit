@@ -1,14 +1,16 @@
-from tex_modules import *
+import os
+import sys
+import tex_modules as tm
 
-status, success = preambleUpdate()
+status, success = tm.preambleUpdate()
 print(status)
 
 if success:
     key = sys.argv[1]
 
-    for root, dirs, files in os.walk(workingPath):
+    for root, dirs, files in os.walk(tm.workingPath):
         if key in dirs:
-            cwd = makePath(root, key)
+            cwd = tm.makePath(root, key)
             break
     else:
         print('DIR NOT FOUND')
@@ -27,11 +29,11 @@ if success:
         os.system(mkdir)
 
     cpv = 'cp -vr '
-    filename = key + ext
-    newdir = makePath(cwd, newdir)
-    src = templates + '/temp.tex'
-    dst = makePath(newdir, filename)
+    filename = key + tm.ext
+    newdir = tm.makePath(cwd, newdir)
+    src = tm.templates + '/temp.tex'
+    dst = tm.makePath(newdir, filename)
     cmd = cpv + src + ' ' + dst
     os.system(cmd)
 
-    linkPreamble(newdir)
+    tm.linkPreamble(newdir)
