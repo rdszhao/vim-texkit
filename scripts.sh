@@ -1,10 +1,3 @@
-# tmux
-
-function tta {
-    tmux attach -t $1
-}
-
-# tex management
 alias texkit="cd [repo dir]"
 
 function texmodules {
@@ -37,9 +30,16 @@ function newtex {
     python3 newdir.py $1
 }
 
+
+# tmux integration
+
+function tta {
+    tmux attach -t $1
+}
+
 function texload {
     texkit
     python3 texmux.py $1
     sleep 0.5
-    tta tex
+    tta tex # tex is the name of the new session
 }
