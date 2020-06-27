@@ -7,7 +7,7 @@ DEPENDENCIES: send2trash, libtmux (if using tmux)
 These functions will only work if your .tex directories are
 structured as such:
 
-'''
+```
 .
 ├── MATH010B.pdf
 ├── MATH010B.tex
@@ -22,7 +22,7 @@ structured as such:
     ├── 4.tex
     ├── 5.tex
     └── 6.tex
-'''
+```
 
 key being ideally sub/input files should be stored in a separate
 'sections' folder to keep things clean
