@@ -20,3 +20,6 @@ structured as such:
         .
         .
         n.tex
+
+key being ideally sub/input files should be stored in a separate
+'sections' folder to keep things clean
