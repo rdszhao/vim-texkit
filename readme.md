@@ -8,6 +8,7 @@ These functions will only work if your .tex directories are
 structured as such:
 
 '''bash
+.
 ├── MATH010B.pdf
 ├── MATH010B.tex
 ├── metafiles
