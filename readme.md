@@ -14,7 +14,7 @@ structured as such:
 ├── metafiles
 │   ├── MATH010B.aux
 │   └── MATH010B.fdb_latexmk
-├── preamble.tex -> /Users/raymondzhao/Documents/Projects/toolkit/tex/template/preamble.tex
+├── preamble.tex -> ~/Documents/Projects/toolkit/preamble.tex
 └── sections
     ├── 1.tex
     ├── 2.tex
