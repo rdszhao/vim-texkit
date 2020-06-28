@@ -10,7 +10,7 @@ if validEntry:
     os.chdir(secpath)
 
     secnum = sys.argv[2]
-    exOptions = ['l', 'n']
+    exOptions = ['l', 'n', 's']
 
     if secnum in exOptions:
         secs = []
@@ -24,7 +24,10 @@ if validEntry:
 
         num = max(secs)
 
-        if 'n' in secnum:
+        if 's' in secnum:
+            num -= 1
+
+        elif 'n' in secnum:
             os.chdir(cwd)
 
             with open(name, 'r') as file:
