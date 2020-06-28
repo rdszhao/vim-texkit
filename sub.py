@@ -6,13 +6,15 @@ name, cwd, validEntry = tm.processFind()
 print(cwd)
 
 if validEntry:
-    cwd = tm.makePath(cwd, 'sections')
-    secnum = sys.argv[2]
-    os.chdir(cwd)
+    secpath = tm.makePath(cwd, 'sections')
+    os.chdir(secpath)
 
-    if secnum == 'l':
+    secnum = sys.argv[2]
+    exOptions = ['l', 'n']
+
+    if secnum in exOptions:
         secs = []
-        secdir = os.walk(cwd)
+        secdir = os.walk(secpath)
 
         for root, dirs, files in secdir:
             for file in files:
@@ -21,8 +23,30 @@ if validEntry:
                     secs.append(num)
 
         num = max(secs)
+
+        if 'n' in secnum:
+            os.chdir(cwd)
+
+            with open(name, 'r') as file:
+                tex = file.readlines()
+                inSpot = '{' + str(num) + '}'
+                newtex = []
+
+                for line in tex:
+                    if inSpot in line:
+                        num += 1
+                        extraLine = '\input{' + str(num) + '}\n'
+                        newtex.append(line)
+                        newtex.append(extraLine)
+                    else:
+                        newtex.append(line)
+
+            with open(name, 'w') as out:
+                out.writelines(newtex)
+
         secnum = str(num)
 
+    os.chdir(secpath)
     texName = tm.texify(secnum)
     cmd = 'nvim ' + texName
     print(cmd)
