@@ -93,14 +93,14 @@ def preambleUpdate():
 def processFind(path=workingPath):
     filename = sys.argv[1]
     if '.' not in filename:
-        name = texify(filename)
+        filename = texify(filename)
 
     for root, dirs, files in os.walk(path):
-        if name in files:
-            return name, root, True
+        if filename in files:
+            return filename, root, True
 
     else:
-        return name, 'lmao kill yourself', False
+        return filename, 'lmao kill yourself', False
 
 
 # behavior can be extremely squirrely if there .files for any
