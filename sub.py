@@ -22,10 +22,14 @@ if validEntry:
                     num = int(tm.untex(file))
                     secs.append(num)
 
-        num = max(secs)
+        if not secs:
+            num = 1
+        else:
+            num = max(secs)
 
         if 's' in secnum:
-            num -= 1
+            if num > 1:
+                num -= 1
 
         elif 'n' in secnum:
             os.chdir(cwd)
