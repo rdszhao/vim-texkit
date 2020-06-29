@@ -23,7 +23,7 @@ if validEntry:
                     secs.append(num)
 
         if not secs:
-            num = 1
+            num = 0
         else:
             num = max(secs)
 
@@ -36,17 +36,20 @@ if validEntry:
 
             with open(name, 'r') as file:
                 tex = file.readlines()
-                inSpot = '{' + str(num) + '}'
+
+                if num == 0:
+                    inSpot = 'maketitle'
+                else:
+                    inSpot = '{' + str(num) + '}'
+
                 newtex = []
 
                 for line in tex:
+                    newtex.append(line)
                     if inSpot in line:
                         num += 1
-                        extraLine = '\input{' + str(num) + '}\n'
-                        newtex.append(line)
+                        extraLine = '\n\input{' + str(num) + '}\n'
                         newtex.append(extraLine)
-                    else:
-                        newtex.append(line)
 
             with open(name, 'w') as out:
                 out.writelines(newtex)
