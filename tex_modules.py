@@ -42,6 +42,7 @@ def preamblePath():
             if preamble in file:
                 pname = makePath(root, file)
                 return pname, True
+
     else:
         return 'PREAMBLE NOT FOUND', False
 
@@ -53,6 +54,7 @@ def linkPreamble(path):
     dst = makePath(path, preamble)
     trash(dst)
     newlink = 'ln -s ' + prbPath + ' ' + dst
+
     os.system(newlink)
     print(dst)
 
@@ -67,6 +69,7 @@ def preamblate():
 
                 os.chdir(root)
                 with open(file, 'r') as tex:
+
                     texin = tex.read()
                     if 'preamble' in texin:
                         linkPreamble(root)
@@ -95,6 +98,7 @@ def processFind(path=workingPath):
     for root, dirs, files in os.walk(path):
         if name in files:
             return name, root, True
+
     else:
         return name, 'lmao kill yourself', False
 
@@ -120,8 +124,10 @@ def cleanup(path):
             if ext in file:
                 itr += 1
                 name = str(itr) + ext
+
                 src = makePath(root, file)
                 dst = makePath(root, name)
+
                 os.rename(src, dst)
                 print(name)
 
@@ -136,8 +142,10 @@ def texMod(name, path):
         newtex = []
 
         for line in tex:
+
             if inputs.search(line) is not None:
                 counter += 1
+
             revision = '{' + str(counter) + '}'
             newtex.append(inputs.sub(revision, line))
 
