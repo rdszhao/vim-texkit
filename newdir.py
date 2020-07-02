@@ -15,6 +15,9 @@ if success:
     else:
         print('DIR NOT FOUND')
 
+    if len(sys.argv) > 2:
+        key = sys.argv[2]
+
     os.chdir(cwd)
     newdir = key + '_tex'
     makedir = 'mkdir ' + newdir
