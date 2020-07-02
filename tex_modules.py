@@ -52,7 +52,7 @@ prbPath, prbFound = preamblePath()
 
 def linkPreamble(path):
     dst = makePath(path, preamble)
-    if dst.exists():
+    if os.path.exists(dst):
         trash(dst)
 
     newlink = 'ln -s ' + prbPath + ' ' + dst
