@@ -12,11 +12,14 @@ if validEntry:
     new = 'n'
 
     if new not in secnum:
-        try:
-            sec_int = int(secnum)
-        except ValueError:
-            print('invalid option')
-            sec_int = -1
+        while True:
+            try:
+                sec_int = int(secnum)
+            except ValueError:
+                print('invalid option')
+                secnum = input('enter another option: ').strip()
+            else:
+                break
 
     if new in secnum or sec_int < 0:
         secs = []
@@ -35,7 +38,8 @@ if validEntry:
 
         if sec_int < 0:
             if num > 1:
-                num -= sec_int + 1
+                sec_int += 1
+                num += sec_int
 
         elif 'n' in secnum:
             os.chdir(cwd)
