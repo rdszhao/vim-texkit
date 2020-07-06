@@ -3,16 +3,22 @@ import sys
 import tex_modules as tm
 
 name, cwd, validEntry = tm.processFind()
-print(cwd)
 
 if validEntry:
     secpath = tm.makePath(cwd, 'sections')
     os.chdir(secpath)
 
     secnum = sys.argv[2]
-    exOptions = ['l', 'n', 's']
+    new = 'n'
 
-    if secnum in exOptions:
+    if new not in secnum:
+        try:
+            sec_int = int(secnum)
+        except ValueError:
+            print('invalid option')
+            sec_int = -1
+
+    if new in secnum or sec_int < 0:
         secs = []
         secdir = os.walk(secpath)
 
@@ -27,9 +33,9 @@ if validEntry:
         else:
             num = max(secs)
 
-        if 's' in secnum:
+        if sec_int < 0:
             if num > 1:
-                num -= 1
+                num -= sec_int + 1
 
         elif 'n' in secnum:
             os.chdir(cwd)
@@ -43,9 +49,9 @@ if validEntry:
                     inSpot = '{' + str(num) + '}'
 
                 newtex = []
-
                 for line in tex:
                     newtex.append(line)
+
                     if inSpot in line:
                         num += 1
                         extraLine = '\n\input{' + str(num) + '}\n'
@@ -59,6 +65,4 @@ if validEntry:
     os.chdir(secpath)
     texName = tm.texify(secnum)
     cmd = 'nvim ' + texName
-    print(cmd)
-
     os.system(cmd)
